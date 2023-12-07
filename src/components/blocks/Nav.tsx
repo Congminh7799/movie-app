@@ -5,8 +5,8 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const Nav = () => {
     const navLinks = [
-        { href: "/", label: "Home" },
-        { href: "/popular", label: "Popular" }
+        { href: "", label: "Home" },
+        { href: "popular", label: "Popular" }
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
