@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import Link from "../share/Link";
 
 const Nav = () => {
     const navLinks = [
         { href: "", label: "Home" },
-        { href: "popular", label: "Popular" }
+        { href: "movie", label: "Movies" },
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
@@ -16,20 +16,14 @@ const Nav = () => {
                 <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden text-white font-bold">
                     {navLinks.map((item) => (
                         <li key={item.label}>
-                            <Link to={item.href}>
-                                <p className="hover:text-sky-400">{item.label}</p>
-                            </Link>
+                            <Link href={item.href} label={item.label} />
                         </li>
                     ))}
                 </ul>
                 <div className="flex gap-2 text-lg leading-normal font-medium text-white font-montserrat max-lg:hidden wide:mr-24">
-                    <Link to={'login'}>
-                        <p className="hover:text-sky-400">Login</p>
-                    </Link>
+                    <Link href="/login" label="Login" />
                     <span>/</span>
-                    <Link to={'signup'}>
-                        <p className="hover:text-sky-400">Signup</p>
-                    </Link>
+                    <Link href="/signup" label="Signup" />
                 </div>
                 <div
                     className="hidden max-lg:block cursor-pointer"
@@ -53,9 +47,7 @@ const Nav = () => {
                     <ul className=" lg:hidden flex flex-col items-center justify-center h-full ">
                         {navLinks.map((item) => (
                             <li key={item.label}>
-                                <Link to={item.href}>
-                                    <p className="hover:text-sky-400">{item.label}</p>
-                                </Link>
+                                <Link href={item.href} label={item.label} />
                             </li>
                         ))}
                     </ul>

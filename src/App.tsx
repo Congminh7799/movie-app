@@ -2,9 +2,11 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
-import Popular from './pages/Popular';
-import NowPlaying from './pages/NowPlaying';
 import Default from './components/layouts/Default';
+import Catalog from './pages/Catalog';
+import Detail from './pages/Detail';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
 
@@ -16,9 +18,11 @@ function App() {
         <Routes>
           <Route path="/movie-app" element={<Default />} >
             <Route index element={<Home />} />
-            <Route path="popular" element={<Popular />} />
-            <Route path="now-playing" element={<NowPlaying />} />
+            <Route path="/movie-app/:category" element={<Catalog />} />
+            <Route path="/movie-app/detail/:id" element={<Detail />} />
           </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
