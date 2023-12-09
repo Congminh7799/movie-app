@@ -9,10 +9,9 @@ import 'swiper/css/navigation';
 
 interface MoviesSlidesProps {
     movies: DataMovie[];
-    category: string;
 }
 
-const MoviesSlides: FC<MoviesSlidesProps> = ({ movies, category }) => (
+const MoviesSlides: FC<MoviesSlidesProps> = ({ movies }) => (
     <Swiper slidesPerView="auto" spaceBetween={15} className="mySwiper">
         {movies.map((movie: DataMovie) => {
             return (
@@ -20,7 +19,7 @@ const MoviesSlides: FC<MoviesSlidesProps> = ({ movies, category }) => (
                     key={movie.id}
                     className="flex flex-col xs:gap-[14px] gap-2 max-w-[170px] rounded-lg"
                 >
-                    <Movie movie={movie} category={category} />
+                    <Movie movie={movie} />
                 </SwiperSlide>
             );
         })}

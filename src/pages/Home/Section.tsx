@@ -97,7 +97,7 @@ const Section: FC<SectionProps> = ({
                         className="xs:h-[250px] h-[216px] text-[18px]"
                     />
                 ) : data ? (
-                    <MoviesSlides movies={data.slice(0, 12)} category={category} />
+                    <MoviesSlides movies={data.slice(0, 12)}/>
                 ) : null}
             </div>
         </section>

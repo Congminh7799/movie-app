@@ -6,10 +6,8 @@ import Movie from "../../Model/Movie";
 import Image from "./Image";
 const MovieCard = ({
   movie,
-  category,
 }: {
   movie: Movie;
-  category: string;
 }) => {
   const { poster_path, original_title: title, name, id } = movie;
   return (

@@ -69,7 +69,7 @@ const Catalog = () => {
                 key={index}
                 className="flex flex-col xs:gap-4 gap-2 xs:max-w-[170px] max-w-[124px] rounded-lg lg:mb-6 md:mb-5 sm:mb-4 mb-[10px]"
               >
-                <Movie movie={movie} category={category ? category : 'movie'} />
+                <Movie movie={movie} />
               </div>
             ))}
           </div>

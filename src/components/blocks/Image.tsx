@@ -31,11 +31,10 @@ const Image: React.FC<ImageProps> = ({
       alt={alt}
       height={height}
       width={width}
-      className={`${
-        !isImageLoaded
+      className={`${!isImageLoaded
           ? `opacity-0 ${zoomInEffect ? "scale-95" : ""}`
           : `opacity-100 ${zoomInEffect ? "scale-100" : ""}`
-      } ${className}`}
+        } ${className}`}
       afterLoad={handleLoad}
     />
   );
