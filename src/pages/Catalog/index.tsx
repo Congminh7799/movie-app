@@ -6,6 +6,7 @@ import { SkelatonLoader } from "../../components/blocks/SkelatonLoader";
 import Movie from "../../components/blocks/Movie";
 import { useQuery } from "@tanstack/react-query";
 import axiosCustom from "../../Api/axiosCustom";
+import DataMovie from "../../Model/Movie";
 
 const fetchMovies = async (category?: string, type?: string, page?: number, searchQuery?: string) => {
   const response = await axiosCustom.get(`/${category}/${type}`, {
@@ -14,7 +15,7 @@ const fetchMovies = async (category?: string, type?: string, page?: number, sear
       searchQuery
     },
   });
-  return response.data;
+  return response.data.results;
 };
 
 const Catalog = () => {
@@ -27,7 +28,7 @@ const Catalog = () => {
   const type = query.get("type") || "popular";
   const searchQuery = query.get("search") || "";
 
-  const { data, isLoading, isFetching } = useQuery<{}, Error>({
+  const { data, isLoading, isFetching } = useQuery<DataMovie[], Error>({
     queryKey: [],
     queryFn: () => fetchMovies(category, type, page, searchQuery),
   });
@@ -40,11 +41,11 @@ const Catalog = () => {
   useEffect(() => {
     if (isLoading || isFetching) return;
 
-    if (data?.results) {
+    if (data) {
       if (page > 1) {
-        setShows((prev: any) => [...prev, ...data.results]);
+        setShows((prev: any) => [...prev, ...data]);
       } else {
-        setShows([...data.results]);
+        setShows([...data]);
         setIsCategoryChanged(false);
       }
     }
@@ -68,7 +69,7 @@ const Catalog = () => {
                 key={index}
                 className="flex flex-col xs:gap-4 gap-2 xs:max-w-[170px] max-w-[124px] rounded-lg lg:mb-6 md:mb-5 sm:mb-4 mb-[10px]"
               >
-                <Movie movie={movie} category={category} />
+                <Movie movie={movie} category={category ? category : 'movie'} />
               </div>
             ))}
           </div>

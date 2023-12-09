@@ -5,6 +5,7 @@ import Error from "../../components/layouts/Error";
 import MoviesSlides from "../../components/blocks/MoviesSlides";
 import { useQuery } from "@tanstack/react-query";
 import axiosCustom from "../../Api/axiosCustom";
+import Movie from "../../Model/Movie";
 
 interface SectionProps {
     title: string;
@@ -28,11 +29,11 @@ const Section: FC<SectionProps> = ({
     const fetchMovies = async () => {
         const response = await axiosCustom.get(`/${category}/${type}`);
         console.log(category, type);
-        
-        return response.data;
+
+        return response.data.results;
     };
 
-    const { data, isLoading, isError, error } = useQuery<{}, Error>({
+    const { data, isLoading, isError, error } = useQuery<Movie[], Error>({
         queryKey: [],
         queryFn: () => fetchMovies(),
         enabled: !isInView
@@ -95,12 +96,9 @@ const Section: FC<SectionProps> = ({
                         error={String(errorMessage)}
                         className="xs:h-[250px] h-[216px] text-[18px]"
                     />
-                ) : (
-                    <MoviesSlides
-                        movies={data.results.slice(0, 12)}
-                        category={category}
-                    />
-                )}
+                ) : data ? (
+                    <MoviesSlides movies={data.slice(0, 12)} category={category} />
+                ) : null}
             </div>
         </section>
     );
